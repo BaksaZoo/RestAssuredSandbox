@@ -1,17 +1,46 @@
 package com.example.sandbox.businessProcesses;
 
 import com.example.sandbox.Common;
+import com.example.sandbox.util.Assertions;
 import com.example.sandbox.util.body.pet.PostCreatePet;
 import io.restassured.response.Response;
-import org.json.simple.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static com.example.sandbox.util.Tools.createPetBody;
-import static com.example.sandbox.util.Tools.generateRandomNumber;
 import static com.example.sandbox.util.body.pet.JsonBody.createJsonBody;
 import static com.example.sandbox.util.constans.Tags.SMOKE;
-import static com.example.sandbox.util.constans.TestData.HYDRAIMAGE;
 
 public class PetLifeCycle extends Common {
+
+    @Test(enabled = true, groups = {SMOKE}, description = "description")
+    public void testPetLifecycle(){
+        PostCreatePet body = PostCreatePet.builder()
+                .PetBody(createPetBody())
+                .build();
+
+        String petByIdEndpoint = petById.replace("{petId}", String.valueOf(body.getPetBody().getId()));
+
+        // create pet
+        Response createResponse = postUrl(newPet, createJsonBody(body));
+        Assertions.assertReturnCode(createResponse, 200);
+
+        // update pet
+        String newPetName = "not " + body.getPetBody().getName();
+        String newPetStatus = "sold";
+        Response updateResponse = postUrlForm(petByIdEndpoint, "name", newPetName, "status", newPetStatus, false);
+        Assertions.assertReturnCode(updateResponse, 200);
+        // check if pet is updated
+        Response getResponse = getUrl(petByIdEndpoint);
+        Assertions.assertReturnCode(getResponse, 200);
+        Assert.assertEquals(getResponse.jsonPath().get("name"), newPetName, "Pet name did not get updated");
+        Assert.assertEquals(getResponse.jsonPath().get("status"), newPetStatus, "Pet status did not get updated");
+
+        // delete pet
+        Response deleteResponse = deleteUrl(petByIdEndpoint);
+        Assertions.assertReturnCode(deleteResponse, 200);
+        // check if pet is deleted
+        getResponse = getUrl(petByIdEndpoint);
+        Assertions.assertReturnCode(getResponse, 404);
+    }
 }
