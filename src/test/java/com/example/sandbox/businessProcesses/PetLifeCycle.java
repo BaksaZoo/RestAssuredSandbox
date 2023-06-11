@@ -8,7 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static com.example.sandbox.util.Tools.createPetBody;
-import static com.example.sandbox.util.body.pet.JsonBody.createJsonBody;
+import static com.example.sandbox.util.body.JsonBody.createJsonBody;
 import static com.example.sandbox.util.constans.Tags.SMOKE;
 
 public class PetLifeCycle extends Common {

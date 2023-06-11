@@ -2,12 +2,12 @@ package com.example.sandbox.store.order.post;
 
 import com.example.sandbox.Common;
 import com.example.sandbox.util.Assertions;
-import com.example.sandbox.util.body.pet.OrderBodyWrapper;
+import com.example.sandbox.util.body.order.OrderBodyWrapper;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 import static com.example.sandbox.util.Tools.createOrderBody;
-import static com.example.sandbox.util.body.pet.JsonBody.createJsonBody;
+import static com.example.sandbox.util.body.JsonBody.createJsonBody;
 import static com.example.sandbox.util.constans.Tags.SMOKE;
 
 public class createOrderTest extends Common {

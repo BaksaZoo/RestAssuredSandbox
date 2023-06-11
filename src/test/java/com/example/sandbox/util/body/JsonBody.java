@@ -1,6 +1,7 @@
-package com.example.sandbox.util.body.pet;
+package com.example.sandbox.util.body;
 
 
+import com.example.sandbox.util.body.BodyWrapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
