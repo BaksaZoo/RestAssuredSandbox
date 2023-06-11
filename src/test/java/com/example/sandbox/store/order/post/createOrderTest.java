@@ -17,13 +17,14 @@ public class createOrderTest extends Common {
         OrderBodyWrapper body = OrderBodyWrapper.builder()
                 .orderBody(createOrderBody())
                 .build();
+        OrderBodyWrapper emptyBody = OrderBodyWrapper.builder().build();
 
         // create order - 200
         Response response200 = postUrl(order, createJsonBody(body));
         Assertions.assertReturnCode(response200, 200);
 
         // create order - 400
-        Response response400 = postUrl(order, createJsonBody(OrderBodyWrapper.builder().build()));
+        Response response400 = postUrl(order, createJsonBody(emptyBody));
         Assertions.assertReturnCode(response400, 400);
     }
 }

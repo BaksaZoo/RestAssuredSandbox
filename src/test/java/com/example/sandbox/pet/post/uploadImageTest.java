@@ -3,7 +3,6 @@ package com.example.sandbox.pet.post;
 import com.example.sandbox.Common;
 import com.example.sandbox.util.Assertions;
 import io.restassured.response.Response;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static com.example.sandbox.util.Tools.generateRandomNumber;

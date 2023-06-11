@@ -3,6 +3,7 @@ package com.example.sandbox.util;
 import com.example.sandbox.util.swagger.definitions.Item;
 import com.example.sandbox.util.swagger.definitions.OrderBody;
 import com.example.sandbox.util.swagger.definitions.PetBody;
+import com.example.sandbox.util.swagger.definitions.UserBody;
 
 import static com.example.sandbox.util.constans.TestData.HYDRAIMAGE;
 
@@ -36,6 +37,19 @@ public class Tools {
                 .shipDate("2023-06-11T13:18:42.040Z")
                 .status("placed")
                 .complete(true)
+                .build();
+    }
+
+    public static UserBody createUserBody() {
+        return UserBody.builder()
+                .id(generateRandomNumber())
+                .username("baksazoo") // care: username must be posted in lowercase
+                .password("123")
+                .firstName("Zoltán")
+                .lastName("Baksa")
+                .email("baksazoo@hotmail.com")
+                .phone("+36307246804")
+                .userStatus(generateRandomNumber())
                 .build();
     }
 }
