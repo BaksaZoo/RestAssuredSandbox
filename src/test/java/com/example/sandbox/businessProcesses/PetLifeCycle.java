@@ -2,7 +2,7 @@ package com.example.sandbox.businessProcesses;
 
 import com.example.sandbox.Common;
 import com.example.sandbox.util.Assertions;
-import com.example.sandbox.util.body.pet.PostCreatePet;
+import com.example.sandbox.util.body.pet.PetBodyWrapper;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -15,8 +15,8 @@ public class PetLifeCycle extends Common {
 
     @Test(enabled = true, groups = {SMOKE}, description = "description")
     public void testPetLifecycle(){
-        PostCreatePet body = PostCreatePet.builder()
-                .PetBody(createPetBody())
+        PetBodyWrapper body = PetBodyWrapper.builder()
+                .petBody(createPetBody())
                 .build();
 
         String petByIdEndpoint = petById.replace("{petId}", String.valueOf(body.getPetBody().getId()));

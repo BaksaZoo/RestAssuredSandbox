@@ -9,10 +9,13 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class PostCreatePet extends  JsonBody{
+public class PetBodyWrapper extends JsonBody implements BodyWrapper{
 
         @JsonProperty
-        private PetBody PetBody;
+        private PetBody petBody;
 
-
+        @Override
+        public Object getBody() {
+                return petBody;
+        }
 }

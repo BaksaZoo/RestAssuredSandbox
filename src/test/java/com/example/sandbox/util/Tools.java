@@ -1,6 +1,7 @@
 package com.example.sandbox.util;
 
 import com.example.sandbox.util.swagger.definitions.Item;
+import com.example.sandbox.util.swagger.definitions.OrderBody;
 import com.example.sandbox.util.swagger.definitions.PetBody;
 
 import static com.example.sandbox.util.constans.TestData.HYDRAIMAGE;
@@ -24,6 +25,17 @@ public class Tools {
                         .name("cute")
                         .build())
                 .status("available")
+                .build();
+    }
+
+    public static OrderBody createOrderBody() {
+        return OrderBody.builder()
+                .id(generateRandomNumber())
+                .petId(generateRandomNumber())
+                .quantity(generateRandomNumber())
+                .shipDate("2023-06-11T13:18:42.040Z")
+                .status("placed")
+                .complete(true)
                 .build();
     }
 }

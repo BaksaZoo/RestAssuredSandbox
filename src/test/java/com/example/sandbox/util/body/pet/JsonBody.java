@@ -9,12 +9,12 @@ import lombok.experimental.SuperBuilder;
 @Getter
 public class JsonBody {
 
-    public static String createJsonBody(PostCreatePet body){
+    public static String createJsonBody(BodyWrapper bodyWrapper){
         try{
-            return new ObjectMapper().writeValueAsString(body.getPetBody());
+            return new ObjectMapper().writeValueAsString(bodyWrapper.getBody());
 
         } catch (Throwable e){
-            throw new RuntimeException("Nody Generation Failure");
+            throw new RuntimeException("Body Generation Failure");
         }
     }
 

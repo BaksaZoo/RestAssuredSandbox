@@ -2,9 +2,8 @@ package com.example.sandbox.pet.post;
 
 import com.example.sandbox.Common;
 import com.example.sandbox.util.Assertions;
-import com.example.sandbox.util.body.pet.PostCreatePet;
+import com.example.sandbox.util.body.pet.PetBodyWrapper;
 import io.restassured.response.Response;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static com.example.sandbox.util.Tools.createPetBody;
@@ -15,8 +14,8 @@ public class updatePetByIdTest extends Common {
 
     @Test(enabled = true, groups = {SMOKE}, description = "description")
     public void testPetUpdateById() {
-        PostCreatePet body = PostCreatePet.builder()
-                .PetBody(createPetBody())
+        PetBodyWrapper body = PetBodyWrapper.builder()
+                .petBody(createPetBody())
                 .build();
 
         String endpoint = petById.replace("{petId}", String.valueOf(body.getPetBody().getId()));
