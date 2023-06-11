@@ -1,6 +1,7 @@
 package com.example.sandbox.pet.delete;
 
 import com.example.sandbox.Common;
+import com.example.sandbox.util.Assertions;
 import com.example.sandbox.util.body.pet.PostCreatePet;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -24,7 +25,7 @@ public class deletePetByIdTest extends Common {
         // delete pet 200 and 404
         for (int i = 0; i < 2; i++) {
             Response response = deleteUrl(petById.replace("{petId}", String.valueOf(body.getPetBody().getId())));
-            Assert.assertEquals(response.getStatusCode(), i < 1 ? 200 : 404, "Invalid response code");
+            Assertions.assertReturnCode(response, i < 1 ? 200 : 404);
         }
     }
 }

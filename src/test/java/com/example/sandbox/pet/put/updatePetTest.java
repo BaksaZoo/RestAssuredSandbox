@@ -1,6 +1,7 @@
 package com.example.sandbox.pet.put;
 
 import com.example.sandbox.Common;
+import com.example.sandbox.util.Assertions;
 import com.example.sandbox.util.body.pet.PostCreatePet;
 import io.restassured.response.Response;
 import org.json.simple.JSONObject;
@@ -28,7 +29,7 @@ public class updatePetTest extends Common {
         petBody.put("name", newPetName);
         petBody.put("id", body.getPetBody().getId());
         Response response200 = putUrl(updatePet, petBody.toJSONString());
-        Assert.assertEquals(response200.getStatusCode(), 200, "Invalid response code");
+        Assertions.assertReturnCode(response200, 200);
 
         // check if name is updated
         String name = response200.jsonPath().get("name").toString();

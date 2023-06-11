@@ -1,6 +1,7 @@
 package com.example.sandbox.pet.get;
 
 import com.example.sandbox.Common;
+import com.example.sandbox.util.Assertions;
 import com.example.sandbox.util.body.pet.PostCreatePet;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -25,13 +26,13 @@ public class petByIdTest extends Common {
 
         // get pet - 200
         Response response200 = getUrl(endpoint);
-        Assert.assertEquals(response200.getStatusCode(), 200, "Invalid response code");
+        Assertions.assertReturnCode(response200, 200);
 
         // delete pet
         deleteUrl(endpoint);
 
         // get pet - 404
         Response response404 = getUrl(endpoint);
-        Assert.assertEquals(response404.getStatusCode(), 404, "Invalid response code");
+        Assertions.assertReturnCode(response404, 404);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.sandbox.pet.post;
 
 import com.example.sandbox.Common;
+import com.example.sandbox.util.Assertions;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -15,6 +16,6 @@ public class uploadImageTest extends Common {
     public void testPetUploadImage() {
         Response response = postUrlForm(uploadImage.replace("{petId}", String.valueOf(generateRandomNumber())),
                 "additionalMetadata", "test-metadata", "file", HYDRAIMAGE, true);
-        Assert.assertEquals(response.getStatusCode(), 200, "Invalid response code");
+        Assertions.assertReturnCode(response, 200);
     }
 }
